@@ -12,9 +12,7 @@
 
 #    maximun allowed bags
 
-#    call price (if possible get flight price from api)
-#        flights-browse-prices
-#           https: // skyscanner.github.io/slate /?_ga = 1.104705984.172843296.1446781555
+#    call price flight plus bags
 
 # ouput data in a readable form -> json
 
