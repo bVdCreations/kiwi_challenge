@@ -9,6 +9,7 @@ name = "pypi"
 
 numpy = "*"
 pandas = "*"
+arrow = "*"
 
 
 [dev-packages]
