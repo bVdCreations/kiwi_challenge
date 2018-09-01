@@ -62,3 +62,15 @@ class Flight:
         if not self.allowed_bags(total_bags):
             raise ValueError('the total bags {} are more than allowed {}'.format(total_bags, self._bags_allowed))
         return self._price + total_bags * self._bag_price
+
+    def departure_destination(self):
+        return self._source
+
+    def arrival_destination(self):
+        return self._destination
+
+    def departure_time(self):
+        return self._departure
+
+    def arrival_time(self):
+        return self._arrival
