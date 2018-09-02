@@ -1,7 +1,10 @@
-from read_csv import input_data_sorted
+import sys
+
+from read_csv import read_in_csv
 from flight import Flight
 from combinations import FlightCombinations
 
+input_data_sorted = read_in_csv(sys.stdin)
 valid_flight_combinations = list()
 second_data = input_data_sorted.copy()
 
