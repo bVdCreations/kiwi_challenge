@@ -13,17 +13,17 @@ class FlightCombinations:
         self._second_flight = sec_flight
         self._is_combination = self._check_combination()
 
-    def is_combination(self):
+    def is_combination(self)->bool:
         '''return if the combination of the flight are possible'''
         return self._is_combination
 
-    def _check_combination(self):
+    def _check_combination(self)->bool:
         if self._possible_destinations() and self._acceptable_time():
             return True
         else:
             return False
 
-    def _possible_destinations(self):
+    def _possible_destinations(self)->bool:
         '''
         return:
             true if possible destinations between 2 flights
@@ -38,7 +38,7 @@ class FlightCombinations:
         else:
             return False
 
-    def _acceptable_time(self):
+    def _acceptable_time(self)->bool:
         '''
         if the time difference between arrival of the first flight and departure of the second
         is between 1 and 4  hours
@@ -52,7 +52,7 @@ class FlightCombinations:
         else:
             return False
 
-    def max_allowed_bags(self):
+    def max_allowed_bags(self)->int:
         ''' return the maximum allowed bags for both flight'''
         return min(
             self._first_flight.max_allowed_bags(),
