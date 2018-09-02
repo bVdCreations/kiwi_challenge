@@ -51,3 +51,7 @@ class FlightCombinations:
             return True
         else:
             return False
+
+    def max_allowed_bags(self):
+        ''' return the maximum allowed bags for both flight'''
+        return min(self._first_flight.max_allowed_bags(), self._second_flight.max_allowed_bags())

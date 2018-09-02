@@ -2,7 +2,7 @@ import pytest
 from ..flight import Flight
 from ..combinations import FlightCombinations
 
-# 4 test flight
+# 5 test flights
 fly1 = Flight(**{
         'source': 'USM', 'destination': 'HKT',
         'departure': '2017-02-12T12:15:00',
@@ -25,7 +25,7 @@ fly4 = Flight(**{
         'source': 'DPS', 'destination': 'BWN',
         'departure': '2017-02-12T17:15:00',
         'arrival': '2017-02-12T19:40:00', 'flight_number': 'PV620',
-        'price': 43, 'bags_allowed': 2, 'bag_price': 25})
+        'price': 43, 'bags_allowed': 1, 'bag_price': 25})
 
 fly5 = Flight(**{
         'source': 'HKT', 'destination': 'BWN',
@@ -115,3 +115,25 @@ def test_check_combination(first_flight, second_flight, expect):
                     )
         assert FlightCombinations(
             first_flight, second_flight)._check_combination() == expect, errorstring
+
+
+@pytest.mark.parametrize("first_flight, second_flight, expect", [
+        # flight 1 bags:2 flight2 bags:2
+        (fly1, fly2, 2),
+        # flight 1 bags:2 flight2 bags:1
+        (fly2, fly3, 1),
+        # flight 1 bags:1 flight2 bags:1
+        (fly3, fly4, 1),
+        # flight 1 bags:1 flight2 bags:2
+        (fly4, fly5, 1),
+])
+def test_max_allowed_bags(first_flight, second_flight, expect):
+        '''test the method of the max allowed bags the to plane flights'''
+
+        errorstring = 'first flight max bags: {} second flight max bags: {}'.format(
+                first_flight.max_allowed_bags(),
+                second_flight.max_allowed_bags(),
+        )
+
+        assert FlightCombinations(
+                first_flight, second_flight).max_allowed_bags() == expect, errorstring

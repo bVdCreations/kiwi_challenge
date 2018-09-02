@@ -74,3 +74,6 @@ class Flight:
 
     def arrival_time(self):
         return self._arrival
+
+    def max_allowed_bags(self):
+        return self._bags_allowed
