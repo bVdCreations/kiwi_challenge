@@ -1,4 +1,5 @@
 import sys
+import json
 
 from read_csv import read_in_csv
 from flight import Flight
@@ -27,6 +28,5 @@ for bags in range(max_bags+1):
             price = valid_combination.total_price(total_bags=bags)
             combinations.append({**valid_combination.info_flights(), 'total price': price, 'bags': bags})
 
-# ouput data in a readable form -> json
-
-# figure out what stdio stdout and stderr are
+# write out the combinations list in json
+sys.stdout.write(json.dumps(combinations))
