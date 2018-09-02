@@ -137,3 +137,34 @@ def test_max_allowed_bags(first_flight, second_flight, expect):
 
         assert FlightCombinations(
                 first_flight, second_flight).max_allowed_bags() == expect, errorstring
+
+
+@pytest.mark.parametrize("first_flight, second_flight, expect_no_bags, expect_all_bags", [
+    # flight 1, flight2, Totalprice no bags, Totalprice max bags
+    (fly1, fly2, 102, 208),
+    (fly2, fly3, 149, 232),
+    (fly3, fly4, 113, 177),
+])
+def test_total_price(first_flight, second_flight, expect_no_bags, expect_all_bags):
+        '''test the method of the max allowed bags the to plane flights'''
+
+        errorstring = 'first flight price: {}  bagprice: {} \n \
+                        second flight price: {}  bagprice: {}'.format(
+            first_flight._price,
+            first_flight._bag_price,
+            second_flight._price,
+            second_flight._bag_price,
+        )
+
+        flight_combo = FlightCombinations(first_flight, second_flight)
+        max_bags = flight_combo.max_allowed_bags()
+
+        assert flight_combo.total_price() > 0, errorstring
+        assert flight_combo.total_price() == expect_no_bags
+        assert flight_combo.total_price(total_bags=max_bags) == expect_all_bags
+
+        with pytest.raises(ValueError):
+                flight_combo.total_price(total_bags=-1)
+
+        with pytest.raises(ValueError):
+                flight_combo.total_price(total_bags=1000)

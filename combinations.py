@@ -54,4 +54,14 @@ class FlightCombinations:
 
     def max_allowed_bags(self):
         ''' return the maximum allowed bags for both flight'''
-        return min(self._first_flight.max_allowed_bags(), self._second_flight.max_allowed_bags())
+        return min(
+            self._first_flight.max_allowed_bags(),
+            self._second_flight.max_allowed_bags()
+            )
+
+    def total_price(self, total_bags=0)->int:
+        '''return the sum of the total price of both flights'''
+        return (
+            self._first_flight.total_price(total_bags=total_bags) +
+            self._second_flight.total_price(total_bags=total_bags)
+            )
