@@ -14,19 +14,15 @@ for first_flight_info in input_data_sorted:
         )
         if flight_combi.is_valid():
             valid_flight_combinations.append(flight_combi)
-# read the csv files
 
-# process into easy manageable objects
-
-# find combinations objects
-
-#    combinations source destination
-
-#    check time diference 1-4 hours
-
-#    maximun allowed bags
-
-#    call price flight plus bags
+max_bags = 2
+combinations = list()
+for bags in range(max_bags+1):
+    # combinations['combinationsset'] = {'combinations by bag': list(), 'bags': bags}
+    for valid_combination in valid_flight_combinations:
+        if valid_combination.max_allowed_bags() >= bags:
+            price = valid_combination.total_price(total_bags=bags)
+            combinations.append({**valid_combination.info_flights(), 'total price': price, 'bags': bags})
 
 # ouput data in a readable form -> json
 

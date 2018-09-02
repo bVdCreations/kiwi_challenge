@@ -65,3 +65,7 @@ class FlightCombinations:
             self._first_flight.total_price(total_bags=total_bags) +
             self._second_flight.total_price(total_bags=total_bags)
             )
+
+    def info_flights(self):
+        ''' return the basic info about the two flights'''
+        return {'first flight': self._first_flight.info_flight(), 'second flight': self._second_flight.info_flight()}

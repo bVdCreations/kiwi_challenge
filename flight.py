@@ -77,3 +77,6 @@ class Flight:
 
     def max_allowed_bags(self):
         return self._bags_allowed
+
+    def info_flight(self):
+        return self._flight_number
