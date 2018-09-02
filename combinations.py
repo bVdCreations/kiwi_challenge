@@ -11,11 +11,11 @@ class FlightCombinations:
         '''
         self._first_flight = prem_flight
         self._second_flight = sec_flight
-        self._is_combination = self._check_combination()
+        self._is_valid = self._check_combination()
 
-    def is_combination(self)->bool:
+    def is_valid(self)->bool:
         '''return if the combination of the flight are possible'''
-        return self._is_combination
+        return self._is_valid
 
     def _check_combination(self)->bool:
         if self._possible_destinations() and self._acceptable_time():
